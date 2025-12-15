@@ -185,7 +185,7 @@ export  default async function Home() {
         <Tekst className={''}>Jer jedino što biljka stvarno želi kad se sprema da nikne jeste:</Tekst>
         <PodebljaniTekst className={''}>Topla, stabilna, kontrolisana zemlja.</PodebljaniTekst>
         <Tekst className={''}>Ne vazduh. Ne plastenik. Ne soba.</Tekst>
-        <PodebljaniTekst className={'-mt-10'}>ZEMLJA</PodebljaniTekst>
+        <PodebljaniTekst className={'-mt-4'}>ZEMLJA</PodebljaniTekst>
         <Tekst className={''}>Ako kontrolišeš to – na konju si.</Tekst>
         <Tekst className={''}>Ako ne – igraš loto.</Tekst>
         <Tekst className={''}>Znam da zvuči brutalno, ali seti se svojih prošlih sezona.</Tekst>

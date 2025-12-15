@@ -7,7 +7,7 @@ export  default async function Home() {
   //const allData = await getData();
 
   return (
-    <main className="max-w-[1350px] mx-auto md:px-20 px-5 flex flex-col items-start justify-center">
+    <main className="max-w-[800px] mx-auto md:px-20 px-5 flex flex-col items-start justify-center">
       <Kontent className={''}> 
         <Naslov className={''}>Kako da 100% tvog rasada sigurno preživi ovu zimu?</Naslov>
         <Tekst className={''}>I ne samo da preživi,
@@ -349,7 +349,7 @@ export  default async function Home() {
         </Lista>
         <Tekst className={''}>Kraj priče.</Tekst>
         <LinijaOdvajanja className={'my-5'}/>
-        <PodebljanPodNaslov className={''}>7. Košta manje nego jedna propuštena sezona</PodebljanPodNaslov>
+        <PodebljaniTekst className={''}>7. Košta manje nego jedna propuštena sezona</PodebljaniTekst>
         <Tekst className={''}>Znaš i sam koliko košta kada NE uspe sezona:</Tekst>
         <Lista className={''}>
           <Tekst className={''}>bačeno seme,</Tekst>

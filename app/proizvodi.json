@@ -1,0 +1,15 @@
+{
+            "proizvodId": 1,
+            "proizvodIme": "Termo cebe",
+            "prozvodCena": 15000,
+            "proizvodPonuda": [
+                {
+                    "komada": 2,
+                    "cena": 2600 
+                },
+                {
+                    "komada": 3,
+                    "cena": 4000
+                }
+            ]
+}

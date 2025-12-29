@@ -1,7 +1,62 @@
 {
             "proizvodId": 1,
             "proizvodIme": "Termo cebe",
-            "prozvodCena": 15000,
+            "proizvodVarijante": [
+                {
+                    "ime" : "3m x 2m (6m²) = [1200W]",
+                    "ponuda": [
+                        {
+                            "komada" : 1,
+                            "cena" : 6.190,
+                            "opis": "1 kom. (do 7.000 rasada)"
+                        },
+                        {
+                            "komada" : 2,
+                            "cena" : 9.904,
+                            "staraCena": 12.380,
+                            "opis": "2 kom. (do 14.000 rasada)",
+                            "dodatak": "4.952 RSD / po komadu",
+                            "banner": "20% popusta - Najpopularnije"
+                        },
+                        {
+                            "komada" : 3,
+                            "cena" : 12.999,
+                            "staraCena": 18.570 ,
+                            "opis": "3 kom. (do 21.000 rasada)",
+                            "dodatak": "4.333 RSD / po komadu",
+                            "banner": "30% popusta - Najisplativije",
+                            "dostavaBesplatna": true
+                        }
+                    ]
+                },
+                {
+                    "ime" : "4m x 1.2m (5m²)  = [900]",
+                    "ponuda": [
+                        {
+                            "komada" : 1,
+                            "cena" : 7.190,
+                            "opis": "1 kom. (do 7.000 rasada)"
+                        },
+                        {
+                            "komada" : 2,
+                            "cena" : 10.904,
+                            "staraCena": 12.380,
+                            "opis": "2 kom. (do 14.000 rasada)",
+                            "dodatak": "4.952 RSD / po komadu",
+                            "banner": "20% popusta - Najpopularnije"
+                        },
+                        {
+                            "komada" : 3,
+                            "cena" : 13.999,
+                            "staraCena": 18.570 ,
+                            "opis": "3 kom. (do 21.000 rasada)",
+                            "dodatak": "4.333 RSD / po komadu",
+                            "banner": "30% popusta - Najisplativije",
+                            "dostavaBesplatna": true
+                        }
+                    ]
+                }
+            ],
             "proizvodPonuda": [
                 {
                     "komada": 2,

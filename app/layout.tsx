@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import "./globals.css";
+import Header from '../components/header/Header'
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -32,6 +33,7 @@ export default function RootLayout({
       <body
         className={`text-black bg-white ${fraunces.className} antialiased`}
       >
+        <Header />
         {children}
       </body>
     </html>

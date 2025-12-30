@@ -33,7 +33,7 @@ export default function HvalaPage() {
 
   return (
     <main className="p-6 max-w-2xl mx-auto">
-      <h1 className="text-2xl font-semibold">Hvala na porudžbini! ✅</h1>
+      <h1 className="text-2xl font-semibold">Hvala na porudžbini!</h1>
       <p className="mt-2">Poslali smo ti potvrdu na: <b>{customer.email}</b></p>
       {orderId ? <p className="mt-1 text-sm opacity-70">ID porudžbine: {orderId}</p> : null}
 
@@ -59,7 +59,7 @@ export default function HvalaPage() {
       </div>
 
       <div>
-         <Link href='/' >
+         <Link href='/proizvod' >
             <button className="bg-[#0F2A1D] text-white text-[18px] py-3 rounded-lg font-semibold disabled:opacity-60 w-full mt-5">
                 Nazad na početnu stranicu
             </button>

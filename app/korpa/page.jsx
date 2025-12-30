@@ -129,7 +129,7 @@ export default function KorpaPage() {
         <h2 className="text-sm font-semibold">{item.proizvodIme}</h2>
 
         <div className="mt-2 text-sm">
-          <p className="text-xl">
+          <p className="text-xl pb-1">
             <span className="font-semibold text-xl">Varijanta:</span> {item.varijantaIme}
           </p>
           <p className="text-xl">

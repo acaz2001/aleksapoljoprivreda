@@ -24,7 +24,7 @@ function ProductClient({ product}) {
     if (product.proizvodVarijante?.length > 0) return product.proizvodVarijante[0];
     return {
       name: product.proizvodVarijante[0]?.ime || 'Default Variant',
-      image: selectedVariant.url[0] || '',
+      image: selectedVariant.url || null  ,
       //price: product.price || 0,
      //priceOld: product.salePrice || '',
       //image: product.images?.[0] || null,
@@ -87,18 +87,17 @@ function ProductClient({ product}) {
 */}
 
 const slike = [
-    {id:1 , url:"/cebe.webp"},
-    {id:2 , url:"/cebe2.jpg"},
-    {id:3 , url:"/cebe3.jpg"},
-    {id:4 , url:"/cebe4.webp"},
+    {id:1 , url:"/elektricno-cebe.avif"},
+    {id:2 , url:"/elektricno-cebe-za-rasad.avif"},
+    {id:3 , url:"/pre-posle.avif"},
+    {id:4 , url:"/u-plasteniku.avif"},
 ]
 
-console.log("Selektovano",selectedVariant)
 
 
   return (
     <>
-    <main className='w-full flex items-center justify-center '>
+    <main className='w-full flex items-center justify-center my-10'>
       <section className='flex lg:flex-row w-full gap-10 h-fit flex-col'>
         {/* Image and Variants for Product */}
         <div className='lg:w-full flex flex-col lg:flex-col 
@@ -106,10 +105,6 @@ console.log("Selektovano",selectedVariant)
           {/* Main Image */}
           <div ref={mainImageRef} className='relative bg-[#f9f6fe] w-[100%] 
           lg:w-[100%] md:w-[100%] rounded-3xl overflow-hidden'>
-            <div className='absolute top-0 right-0 flex flex-col items-center gap-1 mt-3 z-50'>
-              <PiCursorFill className='text-[0.8rem] text-white' />
-              <p className='text-[0.8rem] text-center w-[60%] leading-[1.1] text-white cursor-pointer'>Predjite za zoom</p>
-            </div>
             <Image
                 width={580}
                 height={580}
@@ -146,7 +141,7 @@ console.log("Selektovano",selectedVariant)
         <div className='lg:w-[100%] flex flex-col items-start gap-2'>
 
           <h1 className='text-[40px] text-[#0F2A1D] font-medium w-full leading-[1.1]'>Električno ćebe za rasad</h1>
-          <p className='text-[#1A1A1A] text-[24px] mt-1'>Broj 1 alat za sigurno i brzo nicanje tvog semena zimi</p>
+          <p className='text-[#1A1A1A] md:text-[24px] text-[20px] mt-1'>Broj 1 alat za sigurno i brzo nicanje tvog semena zimi</p>
           <BrziPregled className={'mt-10'}>
             <BrziPregledKartica text={'Sprečava propadanje tvojih semena zimi'} classname={'mt-8'}/>
             <BrziPregledKartica text={'Ubrzava nicanje i seme izlazi već nakon 5 dana'}/>

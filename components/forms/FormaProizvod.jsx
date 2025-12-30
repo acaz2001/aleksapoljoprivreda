@@ -86,7 +86,7 @@ export default function FormaProizvod({ product }) {
       <div>
         <h1 className="text-[20px] font-semibold mb-4">1. Izaberi dimenziju električnog ćebeta</h1>
 
-        <div className="flex flex-row items-center gap-2">
+        <div className="flex md:flex-row flex-col items-center gap-2">
           {product.proizvodVarijante.map((v, idx) => {
             const active = idx === variantIndex;
 
@@ -95,7 +95,8 @@ export default function FormaProizvod({ product }) {
                 key={v.ime}
                 type="button"
                 onClick={() => chooseVariant(idx)}
-                className={`border-1 flex flex-col px-10 py-3 w-full justify-between rounded-md gap-2 relative transition-all
+                className={`border-1 flex flex-col md:px-10 px-2 py-3 w-full 
+                justify-between rounded-md gap-2 relative transition-all cursor-pointer
                   ${active ? "bg-[#f3f1ec] border-[#1b4a36] border-2" : "border-[#1B4A3680]"}`}
               >
                 {/* primer bannera samo na prvoj (po tvojoj logici) */}
@@ -125,7 +126,9 @@ export default function FormaProizvod({ product }) {
               key={`${p.komada}-${p.cena}`}
               type="button"
               onClick={() => setOfferIndex(idx)}
-              className={`border-1 flex flex-col px-10 py-3 w-full justify-between rounded-md gap-2 relative cursor-pointer transition-all
+              className={`border-1 flex flex-col md:px-10 px-2 py-3 w-full 
+                justify-between rounded-md gap-2 relative cursor-pointer 
+                transition-all
                 ${active ? "bg-[#f3f1ec] border-[#1b4a36] border-2" : "border-[#1B4A3680]"}`}
             >
               {/* Banner iz JSON-a ako postoji */}
@@ -136,13 +139,18 @@ export default function FormaProizvod({ product }) {
               )}
 
               <div className="flex flex-row justify-between">
-                <h1 className="text-[20px]">{p.opis || `Ponuda ${idx + 1}`}</h1>
-                <p className="text-[20px]">{formatRSD(normalizePrice(p.cena))}</p>
+                <h1 className="md:text-[20px] text-[18px] md:text-center 
+                text-start md:pl-0 sm:pl-0 pl-4">
+                  {p.opis || `Ponuda ${idx + 1}`}
+                </h1>
+                <p className="md:text-[20px] text-[18px]">{formatRSD(normalizePrice(p.cena))}</p>
               </div>
 
               {(p.dodatak || p.staraCena) && (
                 <div className="flex flex-row justify-between">
-                  <h1 className="text-[14px] text-[#777] font-semibold">{p.dodatak || ""}</h1>
+                  <h1 className="text-[14px] text-[#777] font-semibold md:pl-0 sm:pl-0 pl-4">
+                    {p.dodatak || ""}
+                  </h1>
 
                   {p.staraCena ? (
                     <p className="text-[14px] text-[#777] font-semibold relative">
@@ -157,7 +165,7 @@ export default function FormaProizvod({ product }) {
 
               {p.dostavaBesplatna ? 
                 <div className="bg-[#D9D9D9] flex justify-start py-3 px-5 rounded-md">
-                    <h1 className="text-[20px] font-semibold text-white">
+                    <h1 className="md:text-[20px] text-[18px] font-semibold text-white">
                       <span className="text-[20px] pr-2 font-semibold text-white">+</span> 
                       Besplatna dostava
                     </h1>
@@ -177,11 +185,15 @@ export default function FormaProizvod({ product }) {
         })}
       </div>
 
-      <section className="flex flex-row items-center justify-center gap-5 w-full mt-2">
+      <section className="flex md:flex-row items-center justify-center gap-5 w-full 
+      mt-2 flex-col">
         <div>{ikonica}</div>
         <div>
-          <h1 className="text-[24px] font-semibold">Kupovina bez rizika, 100% sigurnost i garancija.</h1>
-          <p className="text-[16px] font-medium">
+          <h1 className="text-[24px] font-semibold md:text-start text-center">
+            Kupovina bez rizika, 100% sigurnost i garancija.
+          </h1>
+          <p className="text-[16px] font-medium md:text-start text-center
+          md:pt-0 pt-2">
             Ako ti ćebe stigne sa oštećenjem, menjamo za novo, o našem trošku.
           </p>
         </div>

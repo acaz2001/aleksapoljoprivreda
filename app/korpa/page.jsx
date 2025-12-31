@@ -35,7 +35,7 @@ export default function KorpaPage() {
   // Dostava: 1000 RSD osim ako je dostavaBesplatna === true
   const dostavaCena = useMemo(() => {
     if (!item) return 0;
-    return item?.ponuda?.dostavaBesplatna ? 0 : 1000;
+    return item?.ponuda?.dostavaBesplatna ? 0 : 400;
   }, [item]);
 
   const ukupno = useMemo(() => {
@@ -183,7 +183,8 @@ export default function KorpaPage() {
           <button
             type="submit"
             disabled={loading}
-            className="bg-[#0F2A1D] text-white text-[18px] py-3 rounded-lg font-semibold disabled:opacity-60"
+            className="bg-[#0F2A1D] text-white text-[18px] py-3 rounded-lg 
+            font-semibold disabled:opacity-60 cursor-pointer"
           >
             {loading ? "Slanje..." : "Završi porudžbinu"}
           </button>

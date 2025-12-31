@@ -7,7 +7,7 @@ function Header() {
       <main className='max-w-[1650px] mx-auto px-10 py-8  flex md:flex-row items-center
        justify-between sm:flex-row flex-col gap-2'>
         <Logo/>
-        <h1 className='text-[#0F2A1D] md:text-[20px] text-[18px] font-semibold'>
+        <h1 className='text-[#0F2A1D] md:text-[20px] text-center text-[18px] font-semibold'>
             Pomoć i rešenja povrtarima
         </h1>
       </main>

@@ -135,7 +135,8 @@ export default function FormaProizvod({ product }) {
               {/* Banner iz JSON-a ako postoji */}
               {p.banner && (
                 <div className="absolute -top-3 right-4 bg-[#1B4A36] py-1 px-4 w-fit rounded-md">
-                  <p className="text-white lg:text-[12px] md:text-[12px] text-[16px] font-semibold">{p.banner}</p>
+                  <p className="text-white text-[12px] 
+                  font-semibold">{p.banner}</p>
                 </div>
               )}
 

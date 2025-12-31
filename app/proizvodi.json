@@ -7,12 +7,12 @@
                     "ponuda": [
                         {
                             "komada" : 1,
-                            "cena" : 6.190,
+                            "cena" : 5.990,
                             "opis": "1 kom. (do 7.000 rasada)"
                         },
                         {
                             "komada" : 2,
-                            "cena" : 9.904,
+                            "cena" : 10.782,
                             "staraCena": 12.380,
                             "opis": "2 kom. (do 14.000 rasada)",
                             "dodatak": "4.952 RSD / po komadu",
@@ -20,7 +20,7 @@
                         },
                         {
                             "komada" : 3,
-                            "cena" : 12.999,
+                            "cena" : 15.275,
                             "staraCena": 18.570 ,
                             "opis": "3 kom. (do 21.000 rasada)",
                             "dodatak": "4.333 RSD / po komadu",
@@ -34,12 +34,12 @@
                     "ponuda": [
                         {
                             "komada" : 1,
-                            "cena" : 7.190,
+                            "cena" : 5.790,
                             "opis": "1 kom. (do 7.000 rasada)"
                         },
                         {
                             "komada" : 2,
-                            "cena" : 10.904,
+                            "cena" : 10.422,
                             "staraCena": 12.380,
                             "opis": "2 kom. (do 14.000 rasada)",
                             "dodatak": "4.952 RSD / po komadu",
@@ -47,7 +47,7 @@
                         },
                         {
                             "komada" : 3,
-                            "cena" : 13.999,
+                            "cena" : 14.765,
                             "staraCena": 18.570 ,
                             "opis": "3 kom. (do 21.000 rasada)",
                             "dodatak": "4.333 RSD / po komadu",

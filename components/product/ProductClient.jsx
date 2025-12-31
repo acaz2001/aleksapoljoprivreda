@@ -135,11 +135,11 @@ const slike = [
         <div className='lg:w-[100%] flex flex-col items-start gap-2'>
 
           <h1 className='md:text-[40px] sm:text-[40px] text-[24px] text-[#0F2A1D] font-semibold w-full 
-          leading-[1.1]'>
+          leading-[1.1] font-[--font-fraunces] font-semibold'>
           Električno ćebe za rasad
           </h1>
           <p className='text-[#1A1A1A] md:text-[24px] text-[18px] mt-1
-          '>
+          font-medium'>
             Broj 1 alat za sigurno i brzo nicanje tvog semena zimi
           </p>
 

@@ -121,12 +121,12 @@ export default function KorpaPage() {
   }
 
   return (
-    <main className="p-6 max-w-2xl mx-auto">
+    <main className="p-6 max-w-4xl mx-auto">
       <h1 className="text-2xl font-semibold">Korpa</h1>
 
       {/* Izabrani proizvod */}
       <div className="mt-6 border rounded-lg p-4">
-        <h2 className="text-sm font-semibold">{item.proizvodIme}</h2>
+        <h2 className="text-sm md:text-[16px] font-semibold">{item.proizvodIme}</h2>
 
         <div className="mt-2 text-sm">
           <p className="md:text-xl text-lg pb-1">
@@ -138,27 +138,27 @@ export default function KorpaPage() {
         </div>
 
         {item.ponuda?.banner ? (
-          <div className="mt-3 inline-block bg-[#1B4A36] text-white text-xs font-semibold px-3 py-1 rounded">
+          <div className="mt-3 inline-block bg-[#1B4A36] text-white text-xs md:text-lg font-semibold px-3 py-1 rounded">
             {item.ponuda.banner}
           </div>
         ) : null}
 
         <div className="mt-4 border-t pt-4 text-sm">
           <div className="flex justify-between ">
-            <span>Cena</span>
-            <span className="font-semibold">{formatRSD(item.ponuda?.cena)}</span>
+            <span className="md:text-xl text-lg">Cena</span>
+            <span className="md:text-xl text-lg font-semibold">{formatRSD(item.ponuda?.cena)}</span>
           </div>
 
           <div className="flex justify-between mt-2">
-            <span>Dostava</span>
-            <span className="font-semibold">
+            <span className="md:text-xl text-lg font-semibold">Dostava</span>
+            <span className="md:text-xl text-lg">
               {dostavaCena === 0 ? "Besplatna" : formatRSD(dostavaCena)}
             </span>
           </div>
 
           <div className="flex justify-between mt-3 text-base">
-            <span className="font-semibold pr-1.5">Ukupno za naplatu</span>
-            <span className="font-semibold text-end">{formatRSD(ukupno)}</span>
+            <span className="md:text-xl text-lg font-semibold pr-1.5">Ukupno za naplatu</span>
+            <span className="font-semibold text-end md:text-xl text-lg">{formatRSD(ukupno)}</span>
           </div>
         </div>
       </div>

@@ -97,7 +97,7 @@ export default function FormaProizvod({ product }) {
                 onClick={() => chooseVariant(idx)}
                 className={`border-1 flex flex-col md:px-10 px-2 py-3 w-full 
                 justify-between rounded-md gap-2 relative transition-all cursor-pointer
-                  ${active ? "bg-[#f3f1ec] border-[#1b4a36] border-2" : "border-[#1B4A3680]"}`}
+                  ${active ? "bg-[#f3f1ec] border-[#1b4a36] border-2 font-semibold" : "border-[#1B4A3680]"}`}
               >
                 {/* primer bannera samo na prvoj (po tvojoj logici) */}
                 {idx === 0 && (
@@ -107,7 +107,7 @@ export default function FormaProizvod({ product }) {
                 )}
 
                 <div className="flex items-center justify-center">
-                  <h1>{v.ime}</h1>
+                  <h1 className="text-[16px] ">{v.ime}</h1>
                 </div>
               </button>
             );
@@ -129,7 +129,7 @@ export default function FormaProizvod({ product }) {
               className={`border-1 flex flex-col md:px-10 px-2 py-3 w-full 
                 justify-between rounded-md gap-2 relative cursor-pointer 
                 transition-all
-                ${active ? "bg-[#f3f1ec] border-[#1b4a36] border-2" : "border-[#1B4A3680]"}`}
+                ${active ? "bg-[#f3f1ec] border-[#1b4a36] border-2 font-semibold" : "border-[#1B4A3680]"}`}
             >
               {/* Banner iz JSON-a ako postoji */}
               {p.banner && (
@@ -139,21 +139,23 @@ export default function FormaProizvod({ product }) {
               )}
 
               <div className="flex flex-row justify-between">
-                <h1 className="md:text-[20px] text-[18px] md:text-center 
+                <h1 className="md:text-[20px] sm:text-[18px] text-[16px] md:text-center 
                 text-start md:pl-0 sm:pl-0 pl-4">
                   {p.opis || `Ponuda ${idx + 1}`}
                 </h1>
-                <p className="md:text-[20px] text-[18px]">{formatRSD(normalizePrice(p.cena))}</p>
+                <p className="md:text-[20px] text-[16px]">{formatRSD(normalizePrice(p.cena))}</p>
               </div>
 
               {(p.dodatak || p.staraCena) && (
                 <div className="flex flex-row justify-between">
-                  <h1 className="text-[14px] text-[#777] font-semibold md:pl-0 sm:pl-0 pl-4">
+                  <h1 className="md:text-[14px] text-[#777] font-semibold md:pl-0 
+                  sm:pl-0 pl-4 text-[12px]">
                     {p.dodatak || ""}
                   </h1>
 
                   {p.staraCena ? (
-                    <p className="text-[14px] text-[#777] font-semibold relative">
+                    <p className="md:text-[20px] text-[12px] text-[#777] 
+                    font-semibold relative">
                       {formatRSD(normalizePrice(p.staraCena))}
                       <span className="absolute left-0 top-2 w-full h-[1.5px] bg-[#777]"></span>
                     </p>
@@ -186,13 +188,16 @@ export default function FormaProizvod({ product }) {
       </div>
 
       <section className="flex md:flex-row items-center justify-center gap-5 w-full 
-      mt-2 flex-col">
+      mt-2 flex-row">
         <div>{ikonica}</div>
         <div>
-          <h1 className="text-[24px] font-semibold md:text-start text-center">
+          <h1 className="md:block hidden md:text-[24px] text-[20px] font-semibold md:text-start text-start">
             Kupovina bez rizika, 100% sigurnost i garancija.
           </h1>
-          <p className="text-[16px] font-medium md:text-start text-center
+          <h1 className="md:hidden block md:text-[24px] text-[20px] font-semibold md:text-start text-start">
+            100% Garancija
+          </h1>
+          <p className="md:text-[16px] text-[14px] font-medium md:text-start text-start
           md:pt-0 pt-2">
             Ako ti ćebe stigne sa oštećenjem, menjamo za novo, o našem trošku.
           </p>

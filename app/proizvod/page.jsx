@@ -19,9 +19,12 @@ async function Proizvod() {
       <ProducClient product={data}/>
 
       <section className='w-full flex md:flex-row gap-4 items-center justify-center
-       pt-10 flex-col'>
+       pt-10 flex-row'>
         <p>{logo}</p>
-        <h1 className='md:text-[24px] text-[16px] md:text-start text-center font-medium'>Provereno i sigurno rešenje, potvrđeno od 1000+ profesionalnih povrtara</h1>
+        <h1 className='md:text-[24px] text-[16px] md:text-start text-start 
+        font-medium'>
+          Provereno i sigurno rešenje, potvrđeno od 1000+ profesionalnih povrtara
+        </h1>
       </section>
     </div>
   )

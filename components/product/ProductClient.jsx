@@ -18,20 +18,19 @@ function ProductClient({ product}) {
   
   const router = useRouter();
 
-
+const slike = [
+    {id:1 , url:"/elektricno-cebe.avif"},
+    {id:2 , url:"/elektricno-cebe-za-rasad.avif"},
+    {id:3 , url:"/pre-posle.avif"},
+    {id:4 , url:"/u-plasteniku.avif"},
+]
 
   const [selectedVariant, setSelectedVariant] = useState(() => {
-    if (product.proizvodVarijante?.length > 0) return product.proizvodVarijante[0];
-    return {
-      name: product.proizvodVarijante[0]?.ime || 'Default Variant',
-      image: selectedVariant.url || null  ,
-      //price: product.price || 0,
-     //priceOld: product.salePrice || '',
-      //image: product.images?.[0] || null,
-      //opis: product.desc || '',
-      //dimenzije: []
-    };
+    if (product?.proizvodVarijante?.length > 0) return product.proizvodVarijante[0];
+    return slike[0];
   });
+
+  console.log("Slika",slike[0]?.url)
 
   const mainImageRef = useRef(null);
   const imageRef = useRef(null);
@@ -86,12 +85,7 @@ function ProductClient({ product}) {
     };
 */}
 
-const slike = [
-    {id:1 , url:"/elektricno-cebe.avif"},
-    {id:2 , url:"/elektricno-cebe-za-rasad.avif"},
-    {id:3 , url:"/pre-posle.avif"},
-    {id:4 , url:"/u-plasteniku.avif"},
-]
+
 
 
 
@@ -106,12 +100,12 @@ const slike = [
           <div ref={mainImageRef} className='relative bg-[#f9f6fe] w-[100%] 
           lg:w-[100%] md:w-[100%] rounded-3xl overflow-hidden'>
             <Image
-                width={580}
-                height={580}
-                ref={imageRef}
-                src={selectedVariant.url}
-                alt="termo-cebe"
-                 className='w-full h-full object-cover bg-cover'
+              width={580}
+              height={580}
+              ref={imageRef}
+              src={selectedVariant?.url || '/elektricno-cebe.avif'}
+              alt="termo-cebe"
+               className='w-full h-full object-cover bg-cover'
             />
           </div>
 
@@ -140,8 +134,14 @@ const slike = [
         {/* Right: info */}
         <div className='lg:w-[100%] flex flex-col items-start gap-2'>
 
-          <h1 className='text-[40px] text-[#0F2A1D] font-medium w-full leading-[1.1]'>Električno ćebe za rasad</h1>
-          <p className='text-[#1A1A1A] md:text-[24px] text-[20px] mt-1'>Broj 1 alat za sigurno i brzo nicanje tvog semena zimi</p>
+          <h1 className='md:text-[40px] sm:text-[40px] text-[24px] text-[#0F2A1D] font-semibold w-full 
+          leading-[1.1]'>
+          Električno ćebe za rasad
+          </h1>
+          <p className='text-[#1A1A1A] md:text-[24px] text-[18px] mt-1
+          '>
+            Broj 1 alat za sigurno i brzo nicanje tvog semena zimi
+          </p>
           <BrziPregled className={'mt-10'}>
             <BrziPregledKartica text={'Sprečava propadanje tvojih semena zimi'} classname={'mt-8'}/>
             <BrziPregledKartica text={'Ubrzava nicanje i seme izlazi već nakon 5 dana'}/>

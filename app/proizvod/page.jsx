@@ -18,7 +18,7 @@ async function Proizvod() {
     <div className='max-w-[1650px] mx-auto md:px-10 px-4'>
       <ProducClient product={data}/>
 
-      <section className='w-full flex md:flex-row gap-4 items-center justify-center
+      <section className='w-full flex md:flex-row gap-5 items-center justify-center
        pt-10 flex-row'>
         <p>{logo}</p>
         <h1 className='md:text-[24px] text-[16px] md:text-start text-start 

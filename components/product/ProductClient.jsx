@@ -142,12 +142,26 @@ const slike = [
           '>
             Broj 1 alat za sigurno i brzo nicanje tvog semena zimi
           </p>
-          <BrziPregled className={'mt-10'}>
-            <BrziPregledKartica text={'Sprečava propadanje tvojih semena zimi'} classname={'mt-8'}/>
-            <BrziPregledKartica text={'Ubrzava nicanje i seme izlazi već nakon 5 dana'}/>
-            <BrziPregledKartica text={'Radi dok ti spavaš, radiš ili nisi tu'}/>
-            <BrziPregledKartica text={'Postavlja se za 15 minuta + naše besplatno korak-po-korak uputstvo'}/>
-          </BrziPregled>
+
+          <div className='md:block sm:block hidden'>
+            <BrziPregled className={'mt-10'}>
+              <BrziPregledKartica text={'Sprečava propadanje tvojih semena zimi'} classname={'mt-8'}/>
+              <BrziPregledKartica text={'Ubrzava nicanje i seme izlazi već nakon 5 dana'}/>
+              <BrziPregledKartica text={'Radi dok ti spavaš, radiš ili nisi tu'}/>
+              <BrziPregledKartica text={'Postavlja se za 15 minuta + naše besplatno korak-po-korak uputstvo'}/>
+            </BrziPregled>
+          </div>
+
+          <div className='md:hidden sm:hidden block '>
+            <BrziPregled className={'mt-10'}>
+              <BrziPregledKartica text={'Sprečava propadanje u hladnoći'} classname={'mt-8'}/>
+              <BrziPregledKartica text={'Održava temperaturu zemlje'}/>
+              <BrziPregledKartica text={'Seme izlazi do 5 puta brže'}/>
+              <BrziPregledKartica text={'Radi dok spavaš, radiš ili nisi tu'}/>
+              <BrziPregledKartica text={'Ne troši puno struje'}/>
+              <BrziPregledKartica text={'Postavlja se za 15 minuta'}/>
+            </BrziPregled>
+          </div>
 
         <FormaProizvod product={product}/>
             

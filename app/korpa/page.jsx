@@ -129,11 +129,11 @@ export default function KorpaPage() {
         <h2 className="text-sm font-semibold">{item.proizvodIme}</h2>
 
         <div className="mt-2 text-sm">
-          <p className="text-xl pb-1">
-            <span className="font-semibold text-xl">Varijanta:</span> {item.varijantaIme}
+          <p className="md:text-xl text-lg pb-1">
+            <span className="font-semibold md:text-xl text-lg">Varijanta:</span> {item.varijantaIme}
           </p>
-          <p className="text-xl">
-            <span className="font-semibold text-xl">Ponuda:</span> {item.ponuda?.opis} ({item.ponuda?.komada} kom)
+          <p className="md:text-xl text-lg">
+            <span className="font-semibold md:text-xl text-lg">Ponuda:</span> {item.ponuda?.opis} ({item.ponuda?.komada} kom)
           </p>
         </div>
 
@@ -144,7 +144,7 @@ export default function KorpaPage() {
         ) : null}
 
         <div className="mt-4 border-t pt-4 text-sm">
-          <div className="flex justify-between">
+          <div className="flex justify-between ">
             <span>Cena</span>
             <span className="font-semibold">{formatRSD(item.ponuda?.cena)}</span>
           </div>
@@ -157,8 +157,8 @@ export default function KorpaPage() {
           </div>
 
           <div className="flex justify-between mt-3 text-base">
-            <span className="font-semibold">Ukupno za naplatu</span>
-            <span className="font-semibold">{formatRSD(ukupno)}</span>
+            <span className="font-semibold pr-1.5">Ukupno za naplatu</span>
+            <span className="font-semibold text-end">{formatRSD(ukupno)}</span>
           </div>
         </div>
       </div>

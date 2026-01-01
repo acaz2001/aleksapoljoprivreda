@@ -9,11 +9,11 @@
                             "komada" : 1,
                             "cena" : 5.990,
                             "opis": "1 kom. (do 7.000 rasada)"
-                        },
+                        }, 
                         {
                             "komada" : 2,
                             "cena" : 10.782,
-                            "staraCena": 12.380,
+                            "staraCena": 12.938,
                             "opis": "2 kom. (do 14.000 rasada)",
                             "dodatak": "4.952 RSD / po komadu",
                             "banner": "20% popusta - Najpopularnije"
@@ -21,7 +21,7 @@
                         {
                             "komada" : 3,
                             "cena" : 15.275,
-                            "staraCena": 18.570 ,
+                            "staraCena": 19.857 ,
                             "opis": "3 kom. (do 21.000 rasada)",
                             "dodatak": "4.333 RSD / po komadu",
                             "banner": "30% popusta - Najisplativije",
@@ -40,7 +40,7 @@
                         {
                             "komada" : 2,
                             "cena" : 10.422,
-                            "staraCena": 12.380,
+                            "staraCena": 12.506,
                             "opis": "2 kom. (do 14.000 rasada)",
                             "dodatak": "4.952 RSD / po komadu",
                             "banner": "20% popusta - Najpopularnije"
@@ -48,7 +48,7 @@
                         {
                             "komada" : 3,
                             "cena" : 14.765,
-                            "staraCena": 18.570 ,
+                            "staraCena": 19.194 ,
                             "opis": "3 kom. (do 21.000 rasada)",
                             "dodatak": "4.333 RSD / po komadu",
                             "banner": "30% popusta - Najisplativije",

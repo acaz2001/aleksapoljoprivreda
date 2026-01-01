@@ -2,6 +2,7 @@ import React from 'react'
 import { promises as fs } from 'fs';
 import ProducClient from '../../components/product/ProductClient'
 import FormaProizvod from '../../components/forms/FormaProizvod'
+import Image from 'next/image';
 
 async function Proizvod() {
 
@@ -16,6 +17,19 @@ async function Proizvod() {
 
   return (
     <div className='max-w-[1650px] mx-auto md:px-10 px-4'>
+
+      <section className='w-full min-w-[300px] mx-auto bg-[#ECECEC] py-1
+      md:hidden sm:hidden block justify-center items-center mt-5 rounded-sm'>
+        <h1 className='text-[11px] font-semibold flex flex-row gap-1.5 w-full
+        justify-center'>
+          Proizvedeno u Srbiji 
+          <span><Image src={'/1f1f7-1f1f8.webp'} width={18} height={18} alt=''/></span> 
+          od najboljih materijala
+        </h1>
+      </section>
+    
+    
+
       <ProducClient product={data}/>
 
       <section className='w-full flex md:flex-row gap-5 items-center justify-center

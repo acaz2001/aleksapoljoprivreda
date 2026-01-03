@@ -37,7 +37,7 @@ export async function POST(req) {
     const ukupno = Number(item?.ponuda?.cena || 0) + Number(dostavaCena || 0);
 
     const toOwner = process.env.ORDER_TO_EMAIL;
-    const from = process.env.RESEND_FROM_EMAIL || "Porudzbine <onboarding@resend.dev>";
+    const from = process.env.RESEND_FROM_EMAIL || "Porudzbine <e@kontakt.elektricnocebezarasad.rs>";
 
     const storeName = process.env.STORE_NAME || "Prodavnica";
     const storeEmail = process.env.STORE_EMAIL || toOwner;
@@ -47,8 +47,8 @@ export async function POST(req) {
     const subjectOwner = `Nova porudžbina: ${item.proizvodIme} (${item.varijantaIme})`;
 
     const htmlOwner = `
-      <h2>Nova porudžbina</h2>
-      <h3>Proizvod</h3>
+      <h1>Nova porudžbina</h1>
+      <h3>Proizvod:</h3>
       <ul>
         <li><b>Proizvod:</b> ${item.proizvodIme}</li>
         <li><b>Varijanta:</b> ${item.varijantaIme}</li>
@@ -56,7 +56,6 @@ export async function POST(req) {
         <li><b>Cena:</b> ${formatRSD(item.ponuda?.cena)}</li>
         <li><b>Dostava:</b> ${dostavaCena === 0 ? "Besplatna" : formatRSD(dostavaCena)}</li>
         <li><b>Ukupno:</b> ${formatRSD(ukupno)}</li>
-        <li><b>Banner:</b> ${item.ponuda?.banner || "-"}</li>
       </ul>
 
       <h3>Kupac (dostava)</h3>

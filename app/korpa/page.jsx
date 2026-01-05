@@ -181,9 +181,11 @@ export default function KorpaPage() {
           method="POST"
           className="mt-4 flex flex-col gap-3"
         >
-          {/* Mail subject + reply-to */}
+          {/* Mail subject + reply-to 
+          
           <input type="hidden" name="_subject" value={`Nova porudžbina: ${item.proizvodIme}`} />
           <input type="hidden" name="_replyto" value={form.email} />
+          */}
 
           {/* Podaci o porudžbini (da stigne u mejlu) */}
           <input type="hidden" name="proizvod" value={item.proizvodIme} />

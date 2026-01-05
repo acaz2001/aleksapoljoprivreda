@@ -159,7 +159,8 @@ export default function FormaProizvod({ product }) {
                     <p className="md:text-[20px] text-[12px] text-[#777] 
                     font-semibold relative">
                       {formatRSD(normalizePrice(p.staraCena))}
-                      <span className="absolute left-0 top-3.5 w-full h-[1.5px] bg-[#777]"></span>
+                      <span className="absolute left-0 md:top-3.5 w-full h-[1.5px]
+                       bg-[#777] top-1.5"></span>
                     </p>
                   ) : (
                     <span />

@@ -37,7 +37,7 @@ export async function POST(req) {
     const ukupno = Number(item?.ponuda?.cena || 0) + Number(dostavaCena || 0);
 
     const toOwner = process.env.ORDER_TO_EMAIL;
-    const from = process.env.RESEND_FROM_EMAIL || "Porudzbine <e@kontakt.elektricnocebezarasad.rs>";
+    const from = process.env.RESEND_FROM_EMAIL || "Porudzbine <p@kontakt.elektricnocebezarasad.rs>";
 
     const storeName = process.env.STORE_NAME || "Prodavnica";
     const storeEmail = process.env.STORE_EMAIL || toOwner;
@@ -86,7 +86,7 @@ export async function POST(req) {
 
     const htmlCustomer = `
       <h2>Hvala na porudžbini! ✅</h2>
-      <p>Zabeležili smo tvoju porudžbinu i uskoro te kontaktiramo.</p>
+      <p>Zabeležili smo tvoju porudžbinu.</p>
 
       <h3>Detalji porudžbine</h3>
       <ul>

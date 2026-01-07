@@ -1,235 +1,3 @@
-"use client";
-
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
-import { useForm, ValidationError } from "@formspree/react";
-
-export default function KorpaPage() {
-  const router = useRouter();
-  const formRef = useRef(null);
-
-  const [item, setItem] = useState(null);
-
-  const [form, setForm] = useState({
-    ime: "",
-    prezime: "",
-    adresa: "",
-    telefon: "",
-    email: "",
-  });
-
-  const [msg, setMsg] = useState({ type: "", text: "" });
-
-  // Formspree hook
-  const [state, handleSubmit, reset] = useForm("xdakpjoz");
-
-  useEffect(() => {
-    try {
-      const saved = sessionStorage.getItem("korpa_item");
-      if (saved) setItem(JSON.parse(saved));
-    } catch (e) {
-      console.log("Korpa read error:", e);
-    }
-  }, []);
-
-  function formatRSD(n) {
-    return `${new Intl.NumberFormat("sr-RS").format(Number(n || 0))} RSD`;
-  }
-
-  // Dostava: 400 RSD osim ako je dostavaBesplatna === true
-  const dostavaCena = useMemo(() => {
-    if (!item) return 0;
-    return item?.ponuda?.dostavaBesplatna ? 0 : 400;
-  }, [item]);
-
-  const ukupno = useMemo(() => {
-    if (!item) return 0;
-    return Number(item?.ponuda?.cena || 0) + Number(dostavaCena || 0);
-  }, [item, dostavaCena]);
-
-  function onChange(e) {
-    const { name, value } = e.target;
-    setForm((p) => ({ ...p, [name]: value }));
-  }
-
-  function validate() {
-    if (!form.ime.trim()) return "Unesi ime.";
-    if (!form.prezime.trim()) return "Unesi prezime.";
-    if (!form.adresa.trim()) return "Unesi adresu.";
-    if (!form.telefon.trim()) return "Unesi broj telefona.";
-    if (!form.email.trim()) return "Unesi email.";
-    if (!/^\S+@\S+\.\S+$/.test(form.email.trim())) return "Email nije validan.";
-    return "";
-  }
-
-  // Kad Formspree uspe
-  useEffect(() => {
-    if (!state.succeeded || !item) return;
-
-    // snimi za /hvala stranicu
-    sessionStorage.setItem(
-      "order_success",
-      JSON.stringify({
-        orderId: `FS-${Date.now()}`, // lokalni ID (po želji)
-        item,
-        customer: form,
-        dostavaCena,
-        ukupno,
-      })
-    );
-
-    // reset UI
-    formRef.current?.reset();
-    reset?.(); // reset Formspree state (ako je podržan u tvojoj verziji)
-
-    // reset local state
-    setForm({ ime: "", prezime: "", adresa: "", telefon: "", email: "" });
-
-    router.push("/hvala");
-  }, [state.succeeded, item, form, dostavaCena, ukupno, router, reset]);
-
-  async function onSubmit(e) {
-    e.preventDefault();
-    setMsg({ type: "", text: "" });
-
-    if (!item) {
-      setMsg({ type: "err", text: "Nema izabranog proizvoda u korpi." });
-      return;
-    }
-
-    const err = validate();
-    if (err) {
-      setMsg({ type: "err", text: err });
-      return;
-    }
-
-    // Pošalji Formspree-u
-    await handleSubmit(e);
-    // state.errors će se popuniti ako ima greške
-    if (state.errors?.length) {
-      setMsg({ type: "err", text: "Greška pri slanju. Pokušaj ponovo." });
-    }
-  }
-
-  if (!item) {
-    return (
-      <main className="p-6">
-        <h1 className="text-2xl font-semibold">Korpa</h1>
-        <p className="mt-4">Korpa je prazna (nema izabranog proizvoda).</p>
-      </main>
-    );
-  }
-
-  return (
-    <main className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-2xl font-semibold">Korpa</h1>
-
-      {/* Izabrani proizvod */}
-      <div className="mt-6 border rounded-lg p-4">
-        <h2 className="text-sm md:text-[16px] font-semibold">{item.proizvodIme}</h2>
-
-        <div className="mt-2 text-sm">
-          <p className="md:text-xl text-lg pb-1">
-            <span className="font-semibold md:text-xl text-lg">Varijanta:</span> {item.varijantaIme}
-          </p>
-          <p className="md:text-xl text-lg">
-            <span className="font-semibold md:text-xl text-lg">Ponuda:</span>{" "}
-            {item.ponuda?.opis} ({item.ponuda?.komada} kom)
-          </p>
-        </div>
-
-        {item.ponuda?.banner ? (
-          <div className="mt-3 inline-block bg-[#1B4A36] text-white text-xs md:text-lg font-semibold px-3 py-1 rounded">
-            {item.ponuda.banner}
-          </div>
-        ) : null}
-
-        <div className="mt-4 border-t pt-4 text-sm">
-          <div className="flex justify-between ">
-            <span className="md:text-xl text-lg">Cena</span>
-            <span className="md:text-xl text-lg font-semibold">{formatRSD(item.ponuda?.cena)}</span>
-          </div>
-
-          <div className="flex justify-between mt-2">
-            <span className="md:text-xl text-lg font-semibold">Dostava</span>
-            <span className="md:text-xl text-lg">
-              {dostavaCena === 0 ? "Besplatna" : formatRSD(dostavaCena)}
-            </span>
-          </div>
-
-          <div className="flex justify-between mt-3 text-base">
-            <span className="md:text-xl text-lg font-semibold pr-1.5">Ukupno za naplatu</span>
-            <span className="font-semibold text-end md:text-xl text-lg">{formatRSD(ukupno)}</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Forma */}
-      <div className="mt-8">
-        <h3 className="text-xl font-semibold">Podaci za dostavu</h3>
-
-        {msg.text ? (
-          <div className={`mt-3 p-3 rounded ${msg.type === "ok" ? "bg-green-100" : "bg-red-100"}`}>
-            {msg.text}
-          </div>
-        ) : null}
-
-        <form
-          ref={formRef}
-          onSubmit={onSubmit}
-          action="https://formspree.io/f/xdakpjoz"
-          method="POST"
-          className="mt-4 flex flex-col gap-3"
-        >
-          {/* Mail subject + reply-to 
-          
-          <input type="hidden" name="_subject" value={`Nova porudžbina: ${item.proizvodIme}`} />
-          <input type="hidden" name="_replyto" value={form.email} />
-          */}
-
-          {/* Podaci o porudžbini (da stigne u mejlu) */}
-          <input type="hidden" name="proizvod" value={item.proizvodIme} />
-          <input type="hidden" name="varijanta" value={item.varijantaIme || ""} />
-          <input
-            type="hidden"
-            name="ponuda"
-            value={`${item.ponuda?.opis || ""} (${item.ponuda?.komada || ""} kom)`}
-          />
-          <input type="hidden" name="cena" value={formatRSD(item.ponuda?.cena)} />
-          <input type="hidden" name="dostava" value={dostavaCena === 0 ? "Besplatna" : formatRSD(dostavaCena)} />
-          <input type="hidden" name="ukupno" value={formatRSD(ukupno)} />
-
-          <input className="border rounded p-3" name="ime" placeholder="Ime" value={form.ime} onChange={onChange} />
-          <ValidationError prefix="Ime" field="ime" errors={state.errors} />
-
-          <input className="border rounded p-3" name="prezime" placeholder="Prezime" value={form.prezime} onChange={onChange} />
-          <ValidationError prefix="Prezime" field="prezime" errors={state.errors} />
-
-          <input className="border rounded p-3" name="adresa" placeholder="Adresa" value={form.adresa} onChange={onChange} />
-          <ValidationError prefix="Adresa" field="adresa" errors={state.errors} />
-
-          <input className="border rounded p-3" name="telefon" placeholder="Broj telefona" value={form.telefon} onChange={onChange} />
-          <ValidationError prefix="Telefon" field="telefon" errors={state.errors} />
-
-          <input className="border rounded p-3" name="email" placeholder="Email" value={form.email} onChange={onChange} />
-          <ValidationError prefix="Email" field="email" errors={state.errors} />
-
-          <button
-            type="submit"
-            disabled={state.submitting}
-            className="bg-[#0F2A1D] text-white text-[18px] py-3 rounded-lg font-semibold disabled:opacity-60 cursor-pointer"
-          >
-            {state.submitting ? "Slanje..." : "Završi porudžbinu"}
-          </button>
-        </form>
-      </div>
-    </main>
-  );
-}
-
-
-
-{/*  Forma salje resened
   
   "use client";
 
@@ -427,4 +195,231 @@ export default function KorpaPage() {
   );
 }
 
-  */}
+
+
+{/*
+  
+  "use client";
+
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useForm, ValidationError } from "@formspree/react";
+
+export default function KorpaPage() {
+  const router = useRouter();
+  const formRef = useRef(null);
+
+  const [item, setItem] = useState(null);
+
+  const [form, setForm] = useState({
+    ime: "",
+    prezime: "",
+    adresa: "",
+    telefon: "",
+    email: "",
+  });
+
+  const [msg, setMsg] = useState({ type: "", text: "" });
+
+  // Formspree hook
+  const [state, handleSubmit, reset] = useForm("xdakpjoz");
+
+  useEffect(() => {
+    try {
+      const saved = sessionStorage.getItem("korpa_item");
+      if (saved) setItem(JSON.parse(saved));
+    } catch (e) {
+      console.log("Korpa read error:", e);
+    }
+  }, []);
+
+  function formatRSD(n) {
+    return `${new Intl.NumberFormat("sr-RS").format(Number(n || 0))} RSD`;
+  }
+
+  // Dostava: 400 RSD osim ako je dostavaBesplatna === true
+  const dostavaCena = useMemo(() => {
+    if (!item) return 0;
+    return item?.ponuda?.dostavaBesplatna ? 0 : 400;
+  }, [item]);
+
+  const ukupno = useMemo(() => {
+    if (!item) return 0;
+    return Number(item?.ponuda?.cena || 0) + Number(dostavaCena || 0);
+  }, [item, dostavaCena]);
+
+  function onChange(e) {
+    const { name, value } = e.target;
+    setForm((p) => ({ ...p, [name]: value }));
+  }
+
+  function validate() {
+    if (!form.ime.trim()) return "Unesi ime.";
+    if (!form.prezime.trim()) return "Unesi prezime.";
+    if (!form.adresa.trim()) return "Unesi adresu.";
+    if (!form.telefon.trim()) return "Unesi broj telefona.";
+    if (!form.email.trim()) return "Unesi email.";
+    if (!/^\S+@\S+\.\S+$/.test(form.email.trim())) return "Email nije validan.";
+    return "";
+  }
+
+  // Kad Formspree uspe
+  useEffect(() => {
+    if (!state.succeeded || !item) return;
+
+    // snimi za /hvala stranicu
+    sessionStorage.setItem(
+      "order_success",
+      JSON.stringify({
+        orderId: `FS-${Date.now()}`, // lokalni ID (po želji)
+        item,
+        customer: form,
+        dostavaCena,
+        ukupno,
+      })
+    );
+
+    // reset UI
+    formRef.current?.reset();
+    reset?.(); // reset Formspree state (ako je podržan u tvojoj verziji)
+
+    // reset local state
+    setForm({ ime: "", prezime: "", adresa: "", telefon: "", email: "" });
+
+    router.push("/hvala");
+  }, [state.succeeded, item, form, dostavaCena, ukupno, router, reset]);
+
+  async function onSubmit(e) {
+    e.preventDefault();
+    setMsg({ type: "", text: "" });
+
+    if (!item) {
+      setMsg({ type: "err", text: "Nema izabranog proizvoda u korpi." });
+      return;
+    }
+
+    const err = validate();
+    if (err) {
+      setMsg({ type: "err", text: err });
+      return;
+    }
+
+    // Pošalji Formspree-u
+    await handleSubmit(e);
+    // state.errors će se popuniti ako ima greške
+    if (state.errors?.length) {
+      setMsg({ type: "err", text: "Greška pri slanju. Pokušaj ponovo." });
+    }
+  }
+
+  if (!item) {
+    return (
+      <main className="p-6">
+        <h1 className="text-2xl font-semibold">Korpa</h1>
+        <p className="mt-4">Korpa je prazna (nema izabranog proizvoda).</p>
+      </main>
+    );
+  }
+
+  return (
+    <main className="p-6 max-w-4xl mx-auto">
+      <h1 className="text-2xl font-semibold">Korpa</h1>
+
+
+      <div className="mt-6 border rounded-lg p-4">
+        <h2 className="text-sm md:text-[16px] font-semibold">{item.proizvodIme}</h2>
+
+        <div className="mt-2 text-sm">
+          <p className="md:text-xl text-lg pb-1">
+            <span className="font-semibold md:text-xl text-lg">Varijanta:</span> {item.varijantaIme}
+          </p>
+          <p className="md:text-xl text-lg">
+            <span className="font-semibold md:text-xl text-lg">Ponuda:</span>{" "}
+            {item.ponuda?.opis} ({item.ponuda?.komada} kom)
+          </p>
+        </div>
+
+        {item.ponuda?.banner ? (
+          <div className="mt-3 inline-block bg-[#1B4A36] text-white text-xs md:text-lg font-semibold px-3 py-1 rounded">
+            {item.ponuda.banner}
+          </div>
+        ) : null}
+
+        <div className="mt-4 border-t pt-4 text-sm">
+          <div className="flex justify-between ">
+            <span className="md:text-xl text-lg">Cena</span>
+            <span className="md:text-xl text-lg font-semibold">{formatRSD(item.ponuda?.cena)}</span>
+          </div>
+
+          <div className="flex justify-between mt-2">
+            <span className="md:text-xl text-lg font-semibold">Dostava</span>
+            <span className="md:text-xl text-lg">
+              {dostavaCena === 0 ? "Besplatna" : formatRSD(dostavaCena)}
+            </span>
+          </div>
+
+          <div className="flex justify-between mt-3 text-base">
+            <span className="md:text-xl text-lg font-semibold pr-1.5">Ukupno za naplatu</span>
+            <span className="font-semibold text-end md:text-xl text-lg">{formatRSD(ukupno)}</span>
+          </div>
+        </div>
+      </div>
+
+ 
+      <div className="mt-8">
+        <h3 className="text-xl font-semibold">Podaci za dostavu</h3>
+
+        {msg.text ? (
+          <div className={`mt-3 p-3 rounded ${msg.type === "ok" ? "bg-green-100" : "bg-red-100"}`}>
+            {msg.text}
+          </div>
+        ) : null}
+
+        <form
+          ref={formRef}
+          onSubmit={onSubmit}
+          action="https://formspree.io/f/xdakpjoz"
+          method="POST"
+          className="mt-4 flex flex-col gap-3"
+        >
+          
+
+         
+          <input type="hidden" name="proizvod" value={item.proizvodIme} />
+          <input type="hidden" name="varijanta" value={item.varijantaIme || ""} />
+          <input
+            type="hidden"
+            name="ponuda"
+            value={`${item.ponuda?.opis || ""} (${item.ponuda?.komada || ""} kom)`}
+          />
+          <input type="hidden" name="cena" value={formatRSD(item.ponuda?.cena)} />
+          <input type="hidden" name="dostava" value={dostavaCena === 0 ? "Besplatna" : formatRSD(dostavaCena)} />
+          <input type="hidden" name="ukupno" value={formatRSD(ukupno)} />
+
+          <input className="border rounded p-3" name="ime" placeholder="Ime" value={form.ime} onChange={onChange} />
+          <ValidationError prefix="Ime" field="ime" errors={state.errors} />
+
+          <input className="border rounded p-3" name="prezime" placeholder="Prezime" value={form.prezime} onChange={onChange} />
+          <ValidationError prefix="Prezime" field="prezime" errors={state.errors} />
+
+          <input className="border rounded p-3" name="adresa" placeholder="Adresa" value={form.adresa} onChange={onChange} />
+          <ValidationError prefix="Adresa" field="adresa" errors={state.errors} />
+
+          <input className="border rounded p-3" name="telefon" placeholder="Broj telefona" value={form.telefon} onChange={onChange} />
+          <ValidationError prefix="Telefon" field="telefon" errors={state.errors} />
+
+          <input className="border rounded p-3" name="email" placeholder="Email" value={form.email} onChange={onChange} />
+          <ValidationError prefix="Email" field="email" errors={state.errors} />
+
+          <button
+            type="submit"
+            disabled={state.submitting}
+            className="bg-[#0F2A1D] text-white text-[18px] py-3 rounded-lg font-semibold disabled:opacity-60 cursor-pointer"
+          >
+            {state.submitting ? "Slanje..." : "Završi porudžbinu"}
+          </button>
+        </form>
+      </div>
+    </main>
+  );
+} */}

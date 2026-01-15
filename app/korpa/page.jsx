@@ -13,6 +13,8 @@ export default function KorpaPage() {
     ime: "",
     prezime: "",
     adresa: "",
+    grad: "",
+    postanskiBroj: "",
     telefon: "",
     email: "",
   });
@@ -178,6 +180,8 @@ export default function KorpaPage() {
           <input className="border rounded p-3" name="ime" placeholder="Ime" value={form.ime} onChange={onChange} />
           <input className="border rounded p-3" name="prezime" placeholder="Prezime" value={form.prezime} onChange={onChange} />
           <input className="border rounded p-3" name="adresa" placeholder="Adresa" value={form.adresa} onChange={onChange} />
+          <input className="border rounded p-3" name="grad" placeholder="Grad" value={form.grad} onChange={onChange} />
+          <input className="border rounded p-3" name="postanskiBroj" placeholder="Postanski broj" value={form.postanskiBroj} onChange={onChange} />
           <input className="border rounded p-3" name="telefon" placeholder="Broj telefona" value={form.telefon} onChange={onChange} />
           <input className="border rounded p-3" name="email" placeholder="Email" value={form.email} onChange={onChange} />
 

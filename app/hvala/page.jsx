@@ -2,10 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { fbEvent } from '@rivercode/facebook-conversion-api-nextjs';
 
 
 export default function HvalaPage() {
   const [data, setData] = useState(null);
+  
 
   useEffect(() => {
     try {
@@ -15,6 +17,30 @@ export default function HvalaPage() {
       console.log(e);
     }
   }, []);
+
+  // Facebook Conversion API - Praćenje kupovine
+  useEffect(() => {
+    if (data && fbEvent) {
+      fbEvent({
+        eventName: 'Purchase',
+        eventId: data.orderId || `order_${Date.now()}`,
+        emails: [data.customer?.email],
+        phones: [data.customer?.telefon],
+        firstName: data.customer?.ime,
+        lastName: data.customer?.prezime,
+        country: 'Serbia',
+        city: data.customer?.grad,
+        zipCode: data.customer?.postanskiBroj,
+        products: [{
+          sku: data.item?.id || data.item?.proizvodIme,
+          quantity: 1,
+        }],
+        value: data.ukupno,
+        currency: 'RSD',
+        enableStandardPixel: false
+      });
+    }
+  }, [data, fbEvent]);
 
   function formatRSD(n) {
     return `${new Intl.NumberFormat("sr-RS").format(Number(n || 0))} RSD`;

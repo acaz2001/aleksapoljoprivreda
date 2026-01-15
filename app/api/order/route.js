@@ -63,6 +63,8 @@ export async function POST(req) {
         <li><b>Ime:</b> ${customer.ime}</li>
         <li><b>Prezime:</b> ${customer.prezime}</li>
         <li><b>Adresa:</b> ${customer.adresa}</li>
+        <li><b>Grad:</b> ${customer.grad}</li>
+        <li><b>Postanski Broj:</b> ${customer.postanskiBroj}</li>
         <li><b>Telefon:</b> ${customer.telefon}</li>
         <li><b>Email:</b> ${customer.email}</li>
       </ul>

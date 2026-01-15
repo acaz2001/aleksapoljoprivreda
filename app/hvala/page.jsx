@@ -41,8 +41,11 @@ export default function HvalaPage() {
             item_price: Number(data.item?.ponuda?.cena || 0),
           },
         ],
+        
       },
-    });
+      // ✅ TEST EVENT CODE (ubaci tvoj)
+      test_event_code: "TEST1234567",
+    }).catch(console.log);
   }, [data]);
 
   function formatRSD(n) {

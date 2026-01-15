@@ -2,12 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { fbEvent } from '@rivercode/facebook-conversion-api-nextjs';
+import { useFbEvent } from "@rivercode/facebook-conversion-api/hooks";
 
 
 export default function HvalaPage() {
   const [data, setData] = useState(null);
-  
+  const fbEvent = useFbEvent();
 
   useEffect(() => {
     try {

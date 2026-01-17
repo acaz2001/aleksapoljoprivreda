@@ -3,7 +3,7 @@
             "proizvodIme": "Termo ćebe",
             "proizvodVarijante": [
                 {
-                    "ime" : "3m x 2m (6m²) = [1200W]",
+                    "ime" : "3m x 2m (6m²)",
                     "ponuda": [
                         {
                             "komada" : 1,
@@ -30,7 +30,7 @@
                     ]
                 },
                 {
-                    "ime" : "4m x 1.2m (5m²) = [900W]",
+                    "ime" : "4m x 1.2m (5m²)",
                     "ponuda": [
                         {
                             "komada" : 1,

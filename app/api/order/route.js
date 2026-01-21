@@ -33,7 +33,7 @@ export async function POST(req) {
       }
     }
 
-    const dostavaCena = item?.ponuda?.dostavaBesplatna ? 0 : 1000;
+    const dostavaCena = item?.ponuda?.dostavaBesplatna ? 0 : 400;
     const ukupno = Number(item?.ponuda?.cena || 0) + Number(dostavaCena || 0);
 
     const toOwner = process.env.ORDER_TO_EMAIL;

@@ -142,7 +142,8 @@ const slike = [
           font-medium'>
             Broj 1 alat za sigurno i brzo nicanje tvog semena zimi
           </p>
-
+          
+          {/*
           <div className='md:block sm:block hidden'>
             <BrziPregled className={'mt-10'}>
               <BrziPregledKartica text={'Sprečava propadanje tvojih semena zimi'} classname={'mt-8'}/>
@@ -151,15 +152,16 @@ const slike = [
               <BrziPregledKartica text={'Postavlja se za 15 minuta + naše besplatno korak-po-korak uputstvo'}/>
             </BrziPregled>
           </div>
+           */}
 
-          <div className='md:hidden sm:hidden block '>
+          <div className='block '>
             <BrziPregled className={'mt-10'}>
-              <BrziPregledKartica text={'Sprečava propadanje u hladnoći'} classname={'mt-8'}/>
+              <BrziPregledKartica text={'Traje više sezona'} classname={'mt-8'}/>
               <BrziPregledKartica text={'Održava temperaturu zemlje'}/>
               <BrziPregledKartica text={'Seme izlazi do 5 puta brže'}/>
               <BrziPregledKartica text={'Radi dok spavaš, radiš ili nisi tu'}/>
-              <BrziPregledKartica text={'Ne troši puno struje'}/>
-              <BrziPregledKartica text={'Postavlja se za 15 minuta'}/>
+              <BrziPregledKartica text={'Troši do 30 din struje na dan'}/>
+              <BrziPregledKartica text={'Odmah spremno, bez majstora'}/>
             </BrziPregled>
           </div>
 
